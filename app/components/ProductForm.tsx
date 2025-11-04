@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-export default function ProductForm({ initialValues }: { initialValues?: { name?: string } }) {
-	const [name, setName] = useState(initialValues?.name ?? '');
+export default function ProductForm() {
+	const [name, setName] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 	const [success, setSuccess] = useState(false);
@@ -15,7 +15,7 @@ export default function ProductForm({ initialValues }: { initialValues?: { name?
 		setSuccess(false);
 
 		try {
-			// Example: POST to an API route; adjust endpoint/payload as needed.
+			// Example: POST to an API route
 			const res = await fetch('/api/products/submit', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
@@ -41,7 +41,6 @@ export default function ProductForm({ initialValues }: { initialValues?: { name?
 					placeholder="Enter name"
 				/>
 			</div>
-
 			<div>
 				<button
 					type="submit"
@@ -51,7 +50,6 @@ export default function ProductForm({ initialValues }: { initialValues?: { name?
 					{loading ? 'Submitting...' : 'Submit'}
 				</button>
 			</div>
-
 			{error && <p className="text-sm text-red-600">{error}</p>}
 			{success && <p className="text-sm text-green-600">Submitted successfully.</p>}
 		</form>
