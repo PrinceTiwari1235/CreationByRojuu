@@ -14,7 +14,7 @@ const LINKS = [
   { href: "/#contact", label: "Contact" },
 ];
 
-export default function Nav() {
+export default function Nav({ onOpenCustomizeOrder }: { onOpenCustomizeOrder?: () => void }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
@@ -42,9 +42,19 @@ export default function Nav() {
 
         {/* Right actions + mobile hamburger */}
         <div className="flex items-center gap-4">
-          <Link href="/customize" className="hidden sm:inline-block rounded-full bg-[#b76b80] px-5 py-2 text-white shadow-sm hover:opacity-95">
+          <button
+            type="button"
+            className="hidden sm:inline-block rounded-full bg-[#b76b80] px-5 py-2 text-white shadow-sm hover:opacity-95"
+            onClick={() => {
+              if (onOpenCustomizeOrder) {
+                onOpenCustomizeOrder();
+              } else {
+                router.push("/customize-order");
+              }
+            }}
+          >
             Customize Order
-          </Link>
+          </button>
 
           {/* Hamburger - visible on small screens */}
           <button
@@ -94,7 +104,11 @@ export default function Nav() {
               <button
                 onClick={() => {
                   setOpen(false);
-                  router.push("/customize");
+                  if (onOpenCustomizeOrder) {
+                    onOpenCustomizeOrder();
+                  } else {
+                    router.push("/customize-order");
+                  }
                 }}
                 className="inline-block rounded-full bg-[#b76b80] px-4 py-2 text-white"
               >

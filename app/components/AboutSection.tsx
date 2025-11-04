@@ -83,7 +83,7 @@ export default function AboutSection() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/customize"
+                href="/customize-order"
                 className="group relative rounded-full bg-[#b76b80] px-8 py-4 text-white font-semibold shadow-lg text-center overflow-hidden transition-all hover:shadow-xl hover:scale-105"
               >
                 <span className="relative z-10">Customize Your Order</span>

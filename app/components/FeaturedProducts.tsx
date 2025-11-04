@@ -1,34 +1,39 @@
-export default function FeaturedProducts() {
-  const products = [
-    {
-      id: 1,
-      name: "Wildflower Bouquet",
-      description: "Preserved blooms, wrapped in linen ribbon.",
-      price: "$45",
-      badge: "New",
-      badgeColor: "bg-[#b76b80]",
-      image: "/product-wildflower.jpg",
-    },
-    {
-      id: 2,
-      name: "Cotton Whisper Dress",
-      description: "Breathable, naturally dyed, one-of-a-kind.",
-      price: "$120",
-      badge: "One-off",
-      badgeColor: "bg-amber-500",
-      image: "/product-cotton-dress.jpg",
-    },
-    {
-      id: 3,
-      name: "Sunrise Basket",
-      description: "Perfect for gifting or home decor.",
-      price: "$65",
-      badge: "Handmade",
-      badgeColor: "bg-zinc-800",
-      image: "/product-sunrise-basket.jpg",
-    },
-  ];
+"use client";
+import React from "react";
+import Image from "next/image";
 
+// Example static featured products
+const products = [
+  {
+    id: 1,
+    name: "Handcrafted Vase",
+    description: "A beautiful artisan vase made from natural clay.",
+    price: "$45",
+    image: "/vase-flower.jpg", // matches the vase image
+    badge: "New",
+    badgeColor: "bg-pink-500",
+  },
+  {
+    id: 2,
+    name: "Wooden Sculpture",
+    description: "Unique sculpture carved from sustainable wood.",
+    price: "$120",
+    image: "/wooden-sculpture.jpg", // matches the wooden sculpture image
+    badge: "Featured",
+    badgeColor: "bg-yellow-500",
+  },
+  {
+    id: 3,
+    name: "Ceramic Bowl",
+    description: "Hand-painted ceramic bowl for your kitchen.",
+    price: "$30",
+    image: "/ceramic-bowl.jpg", // matches the ceramic bowl image
+    badge: "Best Seller",
+    badgeColor: "bg-green-500",
+  },
+];
+
+export default function FeaturedProducts() {
   return (
     <section className="py-16 bg-white w-full">
       <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-8">
@@ -49,10 +54,14 @@ export default function FeaturedProducts() {
             >
               {/* Image Container */}
               <div className="relative h-64 sm:h-72 overflow-hidden bg-zinc-100">
-                <img
+                <Image
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-full object-cover"
+                  width={400}
+                  height={288}
+                  className="object-cover w-full h-full"
+                  style={{ objectFit: "cover" }}
+                  priority
                 />
                 {/* Badge */}
                 <div className={`absolute top-4 right-4 ${product.badgeColor} text-white px-4 py-1 rounded-full text-sm font-semibold`}>

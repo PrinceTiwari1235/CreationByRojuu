@@ -32,7 +32,7 @@ export default function Hero() {
           <Link href="/products" className="rounded-full bg-[#b76b80] px-8 py-3 text-white font-medium shadow-md">
             Shop Now
           </Link>
-          <Link href="/customize" className="rounded-full bg-white px-8 py-3 text-[#9b5166] font-medium border border-white">
+          <Link href="/customize-order" className="rounded-full bg-white px-8 py-3 text-[#9b5166] font-medium border border-white">
             Customize Your Order
           </Link>
         </div>
