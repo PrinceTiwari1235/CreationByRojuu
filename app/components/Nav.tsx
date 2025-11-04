@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Logo from "./Logo";
 
@@ -15,6 +16,7 @@ const LINKS = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <header className="w-full bg-white/80 backdrop-blur-sm">
@@ -72,15 +74,28 @@ export default function Nav() {
           <ul className="space-y-3">
             {LINKS.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} onClick={() => setOpen(false)} className="block text-base text-zinc-700">
+                {/* use a client-side button that closes the menu and navigates via router */}
+                <button
+                  onClick={() => {
+                    setOpen(false);
+                    router.push(l.href);
+                  }}
+                  className="block text-base text-zinc-700 w-full text-left"
+                >
                   {l.label}
-                </Link>
+                </button>
               </li>
             ))}
             <li>
-              <Link href="/customize" onClick={() => setOpen(false)} className="inline-block rounded-full bg-[#b76b80] px-4 py-2 text-white">
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  router.push("/customize");
+                }}
+                className="inline-block rounded-full bg-[#b76b80] px-4 py-2 text-white"
+              >
                 Customize Order
-              </Link>
+              </button>
             </li>
           </ul>
         </div>
