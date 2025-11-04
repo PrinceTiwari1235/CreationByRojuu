@@ -74,11 +74,15 @@ export default function Nav() {
           <ul className="space-y-3">
             {LINKS.map((l) => (
               <li key={l.href}>
-                {/* use a client-side button that closes the menu and navigates via router */}
                 <button
                   onClick={() => {
                     setOpen(false);
-                    router.push(l.href);
+                    // Always load /products for the Products link
+                    if (l.label === "Products") {
+                      router.push("/products");
+                    } else {
+                      router.push(l.href);
+                    }
                   }}
                   className="block text-base text-zinc-700 w-full text-left"
                 >
