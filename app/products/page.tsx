@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Head from "next/head";
 
 // Static sample products
 const products = [
@@ -24,25 +25,40 @@ const products = [
 
 export default function ProductsPage() {
   return (
-    <main className="max-w-6xl mx-auto px-4 md:px-6 py-12">
-      <h1 className="text-xl md:text-2xl font-bold mb-6">Products</h1>
-      <section>
-        <p className="mt-2 text-zinc-600">Browse our selection of sample products.</p>
-      </section>
-
-      <div className="mt-6">
-        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {products.map((p) => (
-            <li key={p.id} className="rounded border p-4">
-              <div className="flex items-baseline justify-between">
-                <h3 className="font-medium text-base md:text-lg">{p.name}</h3>
-                <span className="text-sm text-zinc-600">{p.price}</span>
-              </div>
-              {p.description && <p className="mt-2 text-sm text-zinc-600">{p.description}</p>}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </main>
+    <>
+      <Head>
+        <title>Handcrafted Products | Creation By Roju</title>
+        <meta
+          name="description"
+          content="Discover artisan products by Creation By Roju. Handmade flowers, bouquets, crafts by Rojina Rai. Unique, sustainable, and custom creations."
+        />
+        <meta
+          name="keywords"
+          content="creation, creation by roju, creationbyroju, creationbyrojuu, creation by rojuu, rojina, rojina rai, flower, bouquet, handmade, artisan, crafts"
+        />
+      </Head>
+      <main className="max-w-6xl mx-auto px-4 md:px-6 py-12">
+        <header>
+          <h1 className="text-xl md:text-2xl font-bold mb-6">Handcrafted Products | Creation By Roju</h1>
+          <p className="mt-2 text-zinc-600">Browse our selection of artisan-made products. Unique, sustainable, and crafted with care.</p>
+        </header>
+        <section aria-label="Product List" className="mt-6">
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {products.map((p) => (
+              <article key={p.id} className="rounded border p-4" itemScope itemType="http://schema.org/Product">
+                <header className="flex items-baseline justify-between">
+                  <h2 className="font-medium text-base md:text-lg" itemProp="name">{p.name}</h2>
+                  <span className="text-sm text-zinc-600" itemProp="offers" itemScope itemType="http://schema.org/Offer">
+                    <meta itemProp="priceCurrency" content="USD" />
+                    <span itemProp="price">{p.price.replace("$", "")}</span>
+                  </span>
+                </header>
+                {p.description && <p className="mt-2 text-sm text-zinc-600" itemProp="description">{p.description}</p>}
+              </article>
+            ))}
+          </ul>
+        </section>
+      </main>
+    </>
   );
 }
