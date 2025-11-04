@@ -1,6 +1,6 @@
 import Hero from "./components/Hero";
 import FeaturesBar from "./components/FeaturesBar";
-import FeaturedProduct from "./components/FeaturedProduct";
+import FeaturedProduct from "./components/FeaturedProducts";
 import ProductHighlight from "./components/ProductHighlight";
 import Testimonial from "./components/Testimonial";
 import Contact from "./components/Contact";
@@ -10,9 +10,9 @@ export default function Home() {
   return (
     <div>
       {/* Full-bleed hero */}
+      <Hero />
       {/* Centered content container for the rest of the homepage */}
       <div>
-      <Hero />
       <FeaturesBar />
         <AboutSection />
         <FeaturedProduct />
