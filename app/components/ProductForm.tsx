@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-export default function ProductForm() {
-	const [name, setName] = useState('');
+export default function ProductForm({ initialValues }: { initialValues?: { name?: string } }) {
+	const [name, setName] = useState(initialValues?.name ?? '');
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 	const [success, setSuccess] = useState(false);
