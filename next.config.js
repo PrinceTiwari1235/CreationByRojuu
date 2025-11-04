@@ -5,15 +5,15 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'randomuser.me',
+                hostname: 'images.unsplash.com',
                 port: '',
-                pathname: '/api/portraits/**',
+                pathname: '/**',
             },
             {
                 protocol: 'https',
-                hostname: 'images.unsplash.com',
+                hostname: 'randomuser.me',
                 port: '',
-                pathname: '/photo-1506744038136-46273834b3fb',
+                pathname: '/**',
             },
         ],
     },
