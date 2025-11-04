@@ -3,11 +3,11 @@ import Newsletter from "../components/Newsletter";
 import ProductForm from "../components/ProductForm";
 
 export default async function ProductsPage() {
-  // Server data fetching (keep server-side)
+  // Server-side data fetching is fine here
   // const products = await getProducts();
 
-  // Prepare only serializable props for the client component
-  const initialValues = { name: "" }; // or derived from server data (primitive/serializable)
+  // Only pass serializable initial data to the client component
+  const initialValues = { name: "" }; // or derived serializable data
 
   return (
     <div>

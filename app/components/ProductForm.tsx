@@ -15,7 +15,7 @@ export default function ProductForm({ initialValues }: { initialValues?: { name?
 		setSuccess(false);
 
 		try {
-			// Example: POST to an API route; adjust endpoint and payload as needed.
+			// Example: POST to an API route; adjust endpoint/payload as needed.
 			const res = await fetch('/api/products/submit', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
