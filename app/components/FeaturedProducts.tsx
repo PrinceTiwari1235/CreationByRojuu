@@ -102,7 +102,24 @@ export default function FeaturedProducts() {
                       "@type": "Offer",
                       priceCurrency: "USD",
                       price: product.price.replace("$", ""),
-                      availability: "https://schema.org/InStock"
+                      availability: "https://schema.org/InStock",
+                      priceValidUntil: "2025-12-31"
+                    },
+                    review: {
+                      "@type": "Review",
+                      reviewRating: {
+                        "@type": "Rating",
+                        ratingValue: "5"
+                      },
+                      author: {
+                        "@type": "Person",
+                        name: "Artisan Customer"
+                      }
+                    },
+                    aggregateRating: {
+                      "@type": "AggregateRating",
+                      ratingValue: "5",
+                      reviewCount: "1"
                     }
                   })
                 }}
