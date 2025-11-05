@@ -9,7 +9,7 @@ const products = [
     name: "Handcrafted Vase",
     description: "A beautiful artisan vase made from natural clay.",
     price: "$45",
-    image: "/vase-flower.jpg", // matches the vase image
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
     badge: "New",
     badgeColor: "bg-pink-500",
   },
@@ -18,7 +18,7 @@ const products = [
     name: "Wooden Sculpture",
     description: "Unique sculpture carved from sustainable wood.",
     price: "$120",
-    image: "/wooden-sculpture.jpg", // matches the wooden sculpture image
+    image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80",
     badge: "Featured",
     badgeColor: "bg-yellow-500",
   },
@@ -27,7 +27,7 @@ const products = [
     name: "Ceramic Bowl",
     description: "Hand-painted ceramic bowl for your kitchen.",
     price: "$30",
-    image: "/ceramic-bowl.jpg", // matches the ceramic bowl image
+    image: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80",
     badge: "Best Seller",
     badgeColor: "bg-green-500",
   },
