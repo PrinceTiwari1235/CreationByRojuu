@@ -27,7 +27,7 @@ const products = [
     name: "Ceramic Bowl",
     description: "Hand-painted ceramic bowl for your kitchen.",
     price: "$30",
-    image: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80",
+  image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
     badge: "Best Seller",
     badgeColor: "bg-green-500",
   },
