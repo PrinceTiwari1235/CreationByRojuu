@@ -4,6 +4,42 @@ export default function StudioCollection() {
       <h1 className="text-4xl font-bold mb-4">Studio Collection</h1>
       <p className="text-lg text-zinc-700 mb-8">This is a placeholder page for the Studio Collection.</p>
       <img src="/studio-collections.jpg" alt="Studio Collection" className="rounded-xl shadow-lg w-full max-w-md" />
+      {/* Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            name: "Studio Collections",
+            description: "A curated studio collection.",
+            image: "https://creation-by-rojuu.vercel.app/_next/image?url=%2Fstudio-collections.jpg&w=3840&q=75",
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "USD",
+              price: "75",
+              availability: "https://schema.org/InStock",
+              priceValidUntil: "2025-12-31"
+            },
+            review: {
+              "@type": "Review",
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: "5"
+              },
+              author: {
+                "@type": "Person",
+                name: "Artisan Customer"
+              }
+            },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: "5",
+              reviewCount: "1"
+            }
+          })
+        }}
+      />
     </div>
   );
 }
