@@ -1,4 +1,10 @@
 module.exports = {
+    darkMode: "class", // Enable dark mode via class
+    content: [
+        "./app/**/*.{js,ts,jsx,tsx}",
+        "./pages/**/*.{js,ts,jsx,tsx}",
+        "./components/**/*.{js,ts,jsx,tsx}",
+    ],
     // ... other config
     theme: {
         extend: {

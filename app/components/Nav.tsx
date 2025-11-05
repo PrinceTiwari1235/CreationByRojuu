@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Logo from "./Logo";
@@ -16,7 +17,37 @@ const LINKS = [
 
 export default function Nav({ onOpenCustomizeOrder }: { onOpenCustomizeOrder?: () => void }) {
   const [open, setOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false); // Always start with false to avoid hydration mismatch
   const router = useRouter();
+
+  // Toggle dark mode and persist preference
+  const handleToggleDarkMode = () => {
+    setDarkMode((prev) => {
+      const next = !prev;
+      if (next) {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+      }
+      return next;
+    });
+  };
+
+  // Apply theme on initial mount
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const theme = localStorage.getItem("theme");
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+        setDarkMode(true);
+      } else {
+        document.documentElement.classList.remove("dark");
+        setDarkMode(false);
+      }
+    }
+  }, []);
 
   // Smooth scroll handler for anchor links
   const handleNavClick = (href: string) => {
@@ -33,7 +64,7 @@ export default function Nav({ onOpenCustomizeOrder }: { onOpenCustomizeOrder?: (
 
   return (
     <>
-      <header className="w-full bg-white/80 backdrop-blur-sm animate-fade-in sticky top-0 z-50 shadow-sm">
+      <header className="w-full bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm animate-fade-in sticky top-0 z-50 shadow-sm">
         <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
           <div className="flex items-center">
             <Link href="/" aria-label="CreationForYou home">
@@ -80,6 +111,20 @@ export default function Nav({ onOpenCustomizeOrder }: { onOpenCustomizeOrder?: (
               Customize Order
             </button>
 
+            {/* Dark/Light mode toggle button (desktop) */}
+            <button
+              type="button"
+              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+              onClick={handleToggleDarkMode}
+              className="hidden sm:inline-flex items-center justify-center rounded-full px-3 py-2 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 shadow-sm hover:bg-zinc-300 dark:hover:bg-zinc-700 transition duration-200"
+            >
+              {darkMode ? (
+                <span>🌙 Dark</span>
+              ) : (
+                <span>☀️ Light</span>
+              )}
+            </button>
+
             {/* Hamburger - visible on small screens */}
             <button
               aria-label={open ? "Close menu" : "Open menu"}
@@ -104,7 +149,7 @@ export default function Nav({ onOpenCustomizeOrder }: { onOpenCustomizeOrder?: (
       {open && (
         <div
           id="mobile-menu"
-          className="fixed top-0 left-0 w-full z-50 border-t bg-white animate-fade-in"
+          className="fixed top-0 left-0 w-full z-50 border-t bg-white dark:bg-zinc-900 animate-fade-in"
         >
           <div className="px-4 py-4">
             <ul className="space-y-3">
@@ -117,7 +162,7 @@ export default function Nav({ onOpenCustomizeOrder }: { onOpenCustomizeOrder?: (
                         setOpen(false);
                         handleNavClick(l.href);
                       }}
-                      className="block text-base text-zinc-700 w-full text-left transition-colors duration-200 transform hover:scale-105 hover:text-zinc-900 bg-transparent border-none cursor-pointer"
+                      className="block text-base text-zinc-700 dark:text-zinc-200 w-full text-left transition-colors duration-200 transform hover:scale-105 hover:text-zinc-900 dark:hover:text-white bg-transparent border-none cursor-pointer"
                     >
                       {l.label}
                     </button>
@@ -132,7 +177,7 @@ export default function Nav({ onOpenCustomizeOrder }: { onOpenCustomizeOrder?: (
                           router.push(l.href);
                         }
                       }}
-                      className="block text-base text-zinc-700 w-full text-left transition-colors duration-200 transform hover:scale-105 hover:text-zinc-900"
+                      className="block text-base text-zinc-700 dark:text-zinc-200 w-full text-left transition-colors duration-200 transform hover:scale-105 hover:text-zinc-900 dark:hover:text-white"
                     >
                       {l.label}
                     </button>
@@ -152,6 +197,21 @@ export default function Nav({ onOpenCustomizeOrder }: { onOpenCustomizeOrder?: (
                   className="inline-block rounded-full bg-[#b76b80] px-4 py-2 text-white transition duration-200 transform hover:scale-105 hover:bg-[#a05a6f]"
                 >
                   Customize Order
+                </button>
+              </li>
+              <li>
+                {/* Dark/Light mode toggle button (mobile) */}
+                <button
+                  type="button"
+                  aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+                  onClick={handleToggleDarkMode}
+                  className="inline-flex items-center justify-center rounded-full px-4 py-2 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 shadow-sm hover:bg-zinc-300 dark:hover:bg-zinc-700 transition duration-200 w-full"
+                >
+                  {darkMode ? (
+                    <span>🌙 Dark</span>
+                  ) : (
+                    <span>☀️ Light</span>
+                  )}
                 </button>
               </li>
             </ul>
